@@ -17,7 +17,7 @@ const Todos = ({
 	};
 
 	const onEdit = (id) => {
-		if (inputRef?.current?.value.length > 0) {
+		if (inputRef?.current?.value.trim().length > 0) {
 			setEditMode(!editMode);
 			dispatch({type: EDIT_TODO, payload: {id: id, inputValue: inputRef?.current?.value}});
 		}
