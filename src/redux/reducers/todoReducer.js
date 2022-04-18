@@ -40,8 +40,8 @@ const todoReducer = (state = initialState, action) => {
 				todos: toggleTodo
 			}
 
-		case PAGINATED_TODO :
 
+		case PAGINATED_TODO :
 			return {
 				...state,
 				activePage: action.payload
@@ -56,6 +56,5 @@ const todoReducer = (state = initialState, action) => {
 			return state
 	}
 };
-
 
 export default todoReducer;

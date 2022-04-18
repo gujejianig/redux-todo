@@ -30,7 +30,7 @@ const Todos = ({
 	return (
 
 		<div className="bg-success bg-opacity-10 rounded-3 p-lg-2 d-flex mt-3 align-items-center ">
-			{editMode ? (<div >
+			{editMode ? (<div>
 				<input
 					ref={inputRef}
 					defaultValue={item.task}
