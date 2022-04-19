@@ -1,8 +1,8 @@
 import React, {useRef, useState} from "react";
 import {Button} from "react-bootstrap";
-import "./todos.css";
+import "./index.css";
 import {useDispatch} from "react-redux";
-import {EDIT_TODO, REMOVE_TODO, TOGGLE_TODO} from "../../redux/actions/Actions";
+import {removeTodo, editTodo, toggleTodo} from "../../redux/actions/todoitems";
 
 const Todos = ({
 	               item
@@ -13,18 +13,19 @@ const Todos = ({
 
 
 	const onRemove = (id) => {
-		dispatch({type: REMOVE_TODO, payload: id});
+		dispatch(removeTodo(id));
 	};
 
 	const onEdit = (id) => {
 		if (inputRef?.current?.value.trim().length > 0) {
 			setEditMode(!editMode);
-			dispatch({type: EDIT_TODO, payload: {id: id, inputValue: inputRef?.current?.value}});
+			dispatch(editTodo(id, inputRef?.current?.value));
+
 		}
 	};
 
 	const checkboxHandler = (id) => {
-		dispatch({type: TOGGLE_TODO, payload: id});
+		dispatch(toggleTodo(id));
 	};
 
 	return (

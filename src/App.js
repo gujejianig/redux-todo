@@ -1,15 +1,13 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Pagination from "./components/Pagination/index";
-import AddTask from "./components/addTask/index";
+import AddTask from "./components/AddTask/index";
 import Todos from "./components/Todos/index";
 import {useSelector} from "react-redux";
 import {todosSelector} from "./redux/selectors/selectors";
 
 const App = () => {
-	const {todos, activePage, todosPerPage} = useSelector(todosSelector);
-	let end = activePage * todosPerPage;
-	let start = end - todosPerPage;
+	const {todos, start, end} = useSelector(todosSelector);
 
 	return (<>
 		<div className="Container">

@@ -1,4 +1,4 @@
-import {ADD_TODO, REMOVE_TODO, TOGGLE_TODO, EDIT_TODO, PAGINATED_TODO, PAGINETED_TO_NEXT_PAGE} from "../actions/Actions";
+import {ADD_TODO, REMOVE_TODO, TOGGLE_TODO, EDIT_TODO, PAGINATED_TODO, PAGINETED_TO_NEXT_PAGE} from "../actions/todoitems";
 
 
 const initialState = {
@@ -8,10 +8,10 @@ const initialState = {
 	todosPerPage: 5
 };
 
-const todoReducer = (state = initialState, action) => {
+const todoitems = (state = initialState, action) => {
 	switch (action.type) {
 		case ADD_TODO :
-			return {...state, todos: [...state.todos, {task: action.payload.inputValue, id: Math.random(), done: false}], activePage: action.payload.nextPage}
+			return  {...state, todos: [...state.todos, {task: action.payload.inputValue, id: Math.random(), done: false}], activePage: action.payload.nextPage}
 
 		case REMOVE_TODO :
 			const filteredState = state.todos.filter(item => item.id !== action.payload);
@@ -57,4 +57,4 @@ const todoReducer = (state = initialState, action) => {
 	}
 };
 
-export default todoReducer;
+export default todoitems;

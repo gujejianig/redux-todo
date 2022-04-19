@@ -1,10 +1,9 @@
 import {Button} from "react-bootstrap";
 import {useSelector} from "react-redux";
-import {PAGINATED_TODO, PAGINETED_TO_NEXT_PAGE} from "../../redux/actions/Actions";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";
 import {todosSelector} from "../../redux/selectors/selectors";
-
+import {paginatedTodo, showNextPage} from "../../redux/actions/todoitems";
 const Pagination = () => {
 	const {todos, todosPerPage, activePage, pagination} = useSelector(todosSelector);
 
@@ -16,11 +15,11 @@ const Pagination = () => {
 	}
 
 	useEffect(() => {
-		dispatch({type: PAGINETED_TO_NEXT_PAGE, payload: paginationButtons});
+		dispatch(showNextPage(paginationButtons));
 	}, [todos]);
 
 	const onPaginate = (index) => {
-		dispatch({type: PAGINATED_TODO, payload: index});
+		dispatch(paginatedTodo(index));
 	};
 
 	return (<div className="d-flex">
