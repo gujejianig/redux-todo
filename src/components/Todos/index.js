@@ -20,7 +20,6 @@ const Todos = ({
 		if (inputRef?.current?.value.trim().length > 0) {
 			setEditMode(!editMode);
 			dispatch(editTodo(id, inputRef?.current?.value));
-
 		}
 	};
 

@@ -5,14 +5,9 @@ import {useEffect} from "react";
 import {todosSelector} from "../../redux/selectors/selectors";
 import {paginatedTodo, showNextPage} from "../../redux/actions/todoitems";
 const Pagination = () => {
-	const {todos, todosPerPage, activePage, pagination} = useSelector(todosSelector);
 
+	const {todos, paginationButtons, pagination, activePage,} = useSelector(todosSelector);
 	const dispatch = useDispatch();
-	let paginationButtons = [];
-
-	for (let i = 1; i <= Math.ceil(todos.length / todosPerPage); i++) {
-		paginationButtons.push(i);
-	}
 
 	useEffect(() => {
 		dispatch(showNextPage(paginationButtons));

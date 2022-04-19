@@ -4,15 +4,15 @@ import Pagination from "./components/Pagination/index";
 import AddTask from "./components/AddTask/index";
 import Todos from "./components/Todos/index";
 import {useSelector} from "react-redux";
-import {todosSelector} from "./redux/selectors/selectors";
+import {slicerSelector} from "./redux/selectors/selectors";
 
 const App = () => {
-	const {todos, start, end} = useSelector(todosSelector);
+	const slicedTodo = useSelector(slicerSelector);
 
 	return (<>
 		<div className="Container">
 			<AddTask/>
-			{todos.slice(start, end)?.map((item) => {
+			{slicedTodo?.map((item) => {
 				return (<Todos
 					key={item.id}
 					item={item}
@@ -24,3 +24,14 @@ const App = () => {
 	</>);
 };
 export default App;
+
+
+
+//
+// export const todos = createSelector(selectTodos, ({todos, pagination, activePage, todosPerPage}) => {
+// 	let end = activePage * todosPerPage;
+// 	let start = end - todosPerPage;
+// 	const  todosMapped =  todos.slice(start, end);
+//
+// 	return {todosMapped}
+// })
