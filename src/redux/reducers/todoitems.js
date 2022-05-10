@@ -1,5 +1,6 @@
 import {ADD_TODO, REMOVE_TODO, TOGGLE_TODO, EDIT_TODO, PAGINATED_TODO, PAGINETED_TO_NEXT_PAGE} from "../actions/todoitems";
-
+import axios from "axios";
+import {FetchApi} from "../../utils/fetchApi";
 
 const initialState = {
 	todos: [],
@@ -8,9 +9,12 @@ const initialState = {
 	todosPerPage: 5
 };
 
+
 const todoitems = (state = initialState, action) => {
+	console.log('-----',state)
 	switch (action.type) {
 		case ADD_TODO :
+			console.log(state)
 			return  {...state, todos: [...state.todos, {task: action.payload.inputValue, id: Math.random(), done: false}], activePage: action.payload.nextPage}
 
 		case REMOVE_TODO :

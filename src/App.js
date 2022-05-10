@@ -5,8 +5,25 @@ import AddTask from "./components/AddTask/index";
 import Todos from "./components/Todos/index";
 import {useSelector} from "react-redux";
 import {slicerSelector} from "./redux/selectors/selectors";
-
+import {useEffect} from "react";
+import axios from "axios";
+import data from "bootstrap/js/src/dom/data";
+import {editTodo} from "./redux/actions/todoitems";
+import {useDispatch} from "react-redux";
 const App = () => {
+
+	const dispatch = useDispatch()
+	useEffect(() => {
+		 const data =  axios.get(`http://localhost:4000/api/todos`)
+			.then(res => {
+				dispatch({type: {}, payload:res.data});
+			}).catch(err => {
+				console.log(err)
+			})
+	}, [])
+
+	console.log(data)
+
 	const slicedTodo = useSelector(slicerSelector);
 
 	return (<>
