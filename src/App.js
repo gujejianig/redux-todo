@@ -27,6 +27,8 @@ const App = () => {
 
 
 
+
+
 	const slicedTodo = useSelector(slicerSelector);
 
 	return (<>
