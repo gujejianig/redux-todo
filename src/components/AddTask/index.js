@@ -4,6 +4,8 @@ import "./index.css";
 import {useDispatch, useSelector} from "react-redux";
 import {addTask} from "../../redux/actions/todoitems";
 import {nextPagerSelector} from "../../redux/selectors/selectors";
+// import {Todo} from "../../utils/requests";
+import {addTodo} from "../../utils/requests";
 
 const SearchForm = () => {
 	const nextPage = useSelector(nextPagerSelector);
@@ -21,6 +23,7 @@ const SearchForm = () => {
 			alert("input have no value");
 		} else {
 			dispatch(addTask(inputValue, nextPage));
+			// addTodo()
 			setInputValue('');
 		}
 	};

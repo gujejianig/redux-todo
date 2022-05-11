@@ -1,6 +1,6 @@
 import {createSelector} from "reselect";
 
-const selectTodos = state => state;
+export const selectTodos = state => state;
 
 export const todosSelector = createSelector(selectTodos, ({todos, pagination, activePage, todosPerPage}) => {
 	let paginationButtons = [];

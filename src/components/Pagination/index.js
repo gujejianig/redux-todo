@@ -11,7 +11,7 @@ const Pagination = () => {
 
 	useEffect(() => {
 		dispatch(showNextPage(paginationButtons));
-	}, [todos]);
+	}, []);
 
 	const onPaginate = (index) => {
 		dispatch(paginatedTodo(index));
