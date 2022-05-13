@@ -7,28 +7,30 @@ import {useSelector} from "react-redux";
 import {slicerSelector} from "./redux/selectors/selectors";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import data from "bootstrap/js/src/dom/data";
-import {editTodo} from "./redux/actions/todoitems";
+import {FETCH_DATA} from "./redux/actions/todoitems";
 import {useDispatch} from "react-redux";
 import {todosSelector} from "./redux/selectors/selectors";
 
+
 const App = () => {
 	const {todos} = useSelector(todosSelector)
-	console.log('todos', todos)
 	const todoState = useSelector(state => state);
 	const dispatch = useDispatch();
 	const [item, setItem] = useState(null)
-	const fetchingData = () => {
+console.log('item', item)
+	const fetchingData = async () => {
 
 		axios.get(`http://localhost:4000/api/todos`)
 			.then(res => {
-			console.log('ahah')
-				setItem(res)
-				dispatch({type: "FETCH_DATA", payload: res.data});
+				setItem(res.data)
+				// await console.log(res.data)
+				console.log(res.data.length)
+				 dispatch({type: FETCH_DATA, payload: res.data});
 			}).catch(err => {
 			console.log(err);
 		});
 	};
+
 
 	useEffect(() => {
 		fetchingData();
