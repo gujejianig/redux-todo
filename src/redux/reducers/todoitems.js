@@ -9,19 +9,18 @@ const initialState = {
 	todosPerPage: 5
 };
 
-
 const todoitems = (state = initialState, action) => {
-
+	console.log('+++',state.todos)
+	console.log('state =>>>',state)
 	switch (action.type) {
-		case FETCH_DATA : {
+		case FETCH_DATA :
 			return {...state, todos: action.payload}
-		}
 		case ADD_TODO :
 			console.log(state)
 			return  {...state, todos: [...state.todos, {task: action.payload.inputValue, id: Math.random(), done: false}], activePage: action.payload.nextPage}
-
 		case REMOVE_TODO :
-			const filteredState = state.todos.filter(item => item.id !== action.payload);
+			console.log('====',state.todos[0]._id)
+			const filteredState = state.todos.filter(item => item._id !== action.payload);
 			if ((state.todos.length - 1) % state.todosPerPage === 0 && (state.todos.length - 1) / state.todosPerPage === state.activePage - 1) {
 				return {
 					...state, todos: filteredState, activePage: state.activePage - 1
@@ -33,7 +32,7 @@ const todoitems = (state = initialState, action) => {
 			}
 
 		case EDIT_TODO :
-			const changedValue = state.todos.map(item => item.id === action.payload.id ? item.todos = {
+			const changedValue = state.todos.map(item => item._id === action.payload.id ? item.todos = {
 				task: action.payload.inputValue, id: Math.random()
 			} : item);
 			return {
@@ -48,16 +47,16 @@ const todoitems = (state = initialState, action) => {
 			}
 
 
-		case PAGINATED_TODO :
-			return {
-				...state,
-				activePage: action.payload
-			}
-		case PAGINETED_TO_NEXT_PAGE :
-			return {
-				...state,
-				pagination: [...action.payload],
-			}
+		// case PAGINATED_TODO :
+		// 	return {
+		// 		...state,
+		// 		activePage: action.payload
+		// 	}
+		// case PAGINETED_TO_NEXT_PAGE :
+		// 	return {
+		// 		...state,
+		// 		pagination: [...action.payload],
+		// 	}
 
 		default:
 			return state

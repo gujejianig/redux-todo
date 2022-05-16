@@ -2,10 +2,12 @@ import {Button} from "react-bootstrap";
 import React, {useState} from "react";
 import "./index.css";
 import {useDispatch, useSelector} from "react-redux";
-import {addTask} from "../../redux/actions/todoitems";
+import {addTask, FETCH_DATA} from "../../redux/actions/todoitems";
 import {nextPagerSelector} from "../../redux/selectors/selectors";
 // import {Todo} from "../../utils/requests";
 import {addTodo} from "../../utils/requests";
+import {request} from "../../utils/fetchApi";
+import axios from "axios";
 
 const SearchForm = () => {
 	const nextPage = useSelector(nextPagerSelector);
@@ -22,8 +24,8 @@ const SearchForm = () => {
 		if (inputValue.trim().length === 0) {
 			alert("input have no value");
 		} else {
-			dispatch(addTask(inputValue, nextPage));
-			// addTodo()
+			dispatch(addTask(inputValue, nextPage))
+			request('add', inputValue)
 			setInputValue('');
 		}
 	};

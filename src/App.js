@@ -10,27 +10,24 @@ import axios from "axios";
 import {FETCH_DATA} from "./redux/actions/todoitems";
 import {useDispatch} from "react-redux";
 import {todosSelector} from "./redux/selectors/selectors";
+import {addTask} from "./redux/actions/todoitems";
 
 
 const App = () => {
 	const {todos} = useSelector(todosSelector)
 	const todoState = useSelector(state => state);
 	const dispatch = useDispatch();
-	const [item, setItem] = useState(null)
-console.log('item', item)
-	const fetchingData = async () => {
-
-		axios.get(`http://localhost:4000/api/todos`)
+	const fetchingData =  () => {
+		console.log('done!!!')
+		 axios.get(`http://localhost:4000/api/todos`)
 			.then(res => {
-				setItem(res.data)
-				// await console.log(res.data)
-				console.log(res.data.length)
 				 dispatch({type: FETCH_DATA, payload: res.data});
 			}).catch(err => {
 			console.log(err);
 		});
 	};
 
+	console.log('todos',todos)
 
 	useEffect(() => {
 		fetchingData();
