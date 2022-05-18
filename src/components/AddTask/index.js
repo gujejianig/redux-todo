@@ -2,7 +2,7 @@ import {Button} from "react-bootstrap";
 import React, {useState} from "react";
 import "./index.css";
 import {useDispatch, useSelector} from "react-redux";
-import {addTask, FETCH_DATA} from "../../redux/actions/todoitems";
+import {ADD_TODO, addTask, FETCH_DATA} from "../../redux/actions/todoitems";
 import {nextPagerSelector} from "../../redux/selectors/selectors";
 // import {Todo} from "../../utils/requests";
 import {addTodo} from "../../utils/requests";
@@ -24,8 +24,15 @@ const SearchForm = () => {
 		if (inputValue.trim().length === 0) {
 			alert("input have no value");
 		} else {
-			dispatch(addTask(inputValue, nextPage))
-			request('add', inputValue)
+			axios.post(`http://localhost:4000/api/todos/add`, {task: inputValue})
+				.then(res => {
+					console.log('data added succesfully')
+					// dispatch(addTask(inputValue, nextPage, res.data.todos._id))
+					console.log('addTaskFil:', res.data.todos)
+					dispatch({type: ADD_TODO, payload: res.data.todos})
+				}).catch(err => {
+				console.log('error', err);
+			});
 			setInputValue('');
 		}
 	};

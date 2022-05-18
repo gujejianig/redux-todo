@@ -2,6 +2,7 @@ import {createSelector} from "reselect";
 
 export const selectTodos = state => state;
 
+
 export const todosSelector = createSelector(selectTodos, ({todos, pagination, activePage, todosPerPage}) => {
 	let paginationButtons = [];
 	for (let i = 1; i <= Math.ceil(todos.length / todosPerPage); i++) {

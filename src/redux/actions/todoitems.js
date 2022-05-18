@@ -9,9 +9,16 @@ export const PAGINATED_TODO = "PAGINATED_TODO";
 export const PAGINETED_TO_NEXT_PAGE = "PAGINETED_TO_NEXT_PAGE";
 
 
-export const addTask = (todo, nextPage) => {
+export const fetchData = (id) => {
 	return {
-		type: ADD_TODO, payload: {inputValue: todo, nextPage: nextPage}
+		type: FETCH_DATA, payload: id
+	}
+}
+
+
+export const addTask = (todo, nextPage, id) => {
+	return {
+		type: ADD_TODO, payload: {inputValue: todo, nextPage: nextPage, _id: id}
 	};
 };
 

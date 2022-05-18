@@ -18,7 +18,6 @@ const App = () => {
 	const todoState = useSelector(state => state);
 	const dispatch = useDispatch();
 	const fetchingData =  () => {
-		console.log('done!!!')
 		 axios.get(`http://localhost:4000/api/todos`)
 			.then(res => {
 				 dispatch({type: FETCH_DATA, payload: res.data});
@@ -27,7 +26,6 @@ const App = () => {
 		});
 	};
 
-	console.log('todos',todos)
 
 	useEffect(() => {
 		fetchingData();

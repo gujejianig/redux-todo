@@ -14,14 +14,12 @@ const Todos = ({
 
 
 	const onRemove =  (id) => {
-		console.log('item', item)
-		console.log('id', item._id)
 		dispatch(removeTodo(id));
-		axios.delete(`http://localhost:4000/api/todos/:${item._id}`)
+		console.log('id:', id)
+		axios.delete(`http://localhost:4000/api/todos/:${id}`)
 			.then(res => {
-				// dispatch({type: FETCH_DATA, payload: res.data});
 				console.log('deleted successfully');
-				// dispatch({type: REMOVE_TODO, payload: })
+				console.log(id)
 			}).catch(err => {
 			console.log('error', err);
 		});
@@ -30,7 +28,6 @@ const Todos = ({
 	const onEdit = (id) => {
 		if (inputRef?.current?.value.trim().length > 0) {
 			setEditMode(!editMode);
-
 			axios.patch(`http://localhost:4000/api/todos/:${id}`, {task: inputRef?.current?.value})
 				.then(res => {
 					// dispatch({type: FETCH_DATA, payload: res.data});
@@ -77,7 +74,7 @@ const Todos = ({
           </span>
 				<input onChange={() => checkboxHandler(item.id)} type="checkbox"/>
 				<Button
-					onClick={() => onRemove(item._id)}
+					onClick={() => onRemove(item?._id)}
 					className="m-lg-2"
 					size="sm"
 					variant="danger"
